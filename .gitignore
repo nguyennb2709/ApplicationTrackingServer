@@ -1,0 +1,75 @@
+# ==============================
+# Visual Studio
+# ==============================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.pidb
+*.svclog
+
+# ==============================
+# Build and output directories
+# ==============================
+bin/
+obj/
+Debug/
+Release/
+publish/
+*.log
+
+# ==============================
+# Rider IDE
+# ==============================
+.idea/
+*.sln.iml
+
+# ==============================
+# NuGet Packages
+# ==============================
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ==============================
+# ASP.NET Core / .NET
+# ==============================
+*.dotCover
+*.ncrunch*
+*.VisualState.xml
+*.pdb
+*.cache
+*.tmp
+*.swp
+
+# ==============================
+# User-specific files
+# ==============================
+*.rsuser
+*.sln.ide
+*.DS_Store
+Thumbs.db
+
+# ==============================
+# EF Core / Local Databases
+# ==============================
+*.mdf
+*.ldf
+*.db
+Migrations/
+
+# ==============================
+# Frontend / Node (if applicable)
+# ==============================
+node_modules/
+wwwroot/lib/
+
+# ==============================
+# Secrets / configuration
+# ==============================
+secrets.json
+appsettings.Development.json
+launchSettings.json
