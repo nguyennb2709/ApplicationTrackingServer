@@ -31,9 +31,4 @@ public class JobApplicationService : IJobApplicationService
     {
         return await _jobApplicationRepository.UpdateJobApplication(jobApplication);
     }
-
-    public async Task<bool> DeleteJobApplication(string id)
-    {
-        return await _jobApplicationRepository.DeleteJobApplication(id);
-    }
 }

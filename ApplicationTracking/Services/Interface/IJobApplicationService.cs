@@ -9,5 +9,4 @@ public interface IJobApplicationService
     Task<JobApplication> GetJobApplicationById(string id);
     Task<JobApplication> CreateJobApplication(JobApplicationDTO jobApplication);
     Task<JobApplication> UpdateJobApplication(JobApplication jobApplication);
-    Task<bool> DeleteJobApplication(string id);
 }

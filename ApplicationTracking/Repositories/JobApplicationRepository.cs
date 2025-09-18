@@ -63,17 +63,4 @@ public class JobApplicationRepository : IJobApplicationRepository
         await _dbContext.SaveChangesAsync();
         return jobApplication;
     }
-
-    public async Task<bool> DeleteJobApplication(string id)
-    {
-        var existingJobApplication = await _dbContext.JobApplications.FindAsync(id);
-        if (existingJobApplication == null)
-        {
-            return false;
-        }
-
-        _dbContext.JobApplications.Remove(new JobApplication { Id = id });
-        await _dbContext.SaveChangesAsync();
-        return true;
-    }
 }

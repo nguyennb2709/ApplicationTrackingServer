@@ -38,11 +38,4 @@ public class JobApplicationController : ControllerBase
     {
         return Ok(await _jobApplicationService.UpdateJobApplication(jobApplication));
     }
-
-    [HttpDelete]
-    public async Task<IActionResult> DeleteApplication(string id)
-    {
-        return Ok(await _jobApplicationService.DeleteJobApplication(id));
-    }
-    
 }
