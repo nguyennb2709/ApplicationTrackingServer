@@ -16,14 +16,19 @@ public class JobApplicationController : ControllerBase
         _jobApplicationService = jobApplicationService;   
     }
 
-    [HttpPost]
+    [HttpPost("All")]
     public async Task<IActionResult> GetApplications([FromBody] PaginationParameters dto)
     {
         return Ok(await _jobApplicationService.GetJobApplications(dto));
     }
-    
+    [HttpPost()]
+    public async Task<IActionResult> AddApplications([FromBody] JobApplicationDTO dto)
+    {
+        return Ok(await _jobApplicationService.CreateJobApplication(dto));
+    }
+
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetApplicationById(int id)
+    public async Task<IActionResult> GetApplicationById(string id)
     {
        return Ok( await _jobApplicationService.GetJobApplicationById(id));
     }
@@ -35,7 +40,7 @@ public class JobApplicationController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteApplication(int id)
+    public async Task<IActionResult> DeleteApplication(string id)
     {
         return Ok(await _jobApplicationService.DeleteJobApplication(id));
     }

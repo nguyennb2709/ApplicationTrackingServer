@@ -12,6 +12,7 @@ public class JobApplicationRepository : IJobApplicationRepository
     {
         _dbContext = dbContext;
     }
+
     public Task<PagedResult<JobApplication>> GetJobApplications(PaginationParameters paginationParameters)
     {
         var totalApplications = _dbContext.JobApplications.AsQueryable();
@@ -28,16 +29,24 @@ public class JobApplicationRepository : IJobApplicationRepository
         });
     }
 
-    public async Task<JobApplication> GetJobApplicationById(int id)
+    public async Task<JobApplication> GetJobApplicationById(string id)
     {
         return await _dbContext.JobApplications.FindAsync(id);
     }
 
-    public async Task<JobApplication> CreateJobApplication(JobApplication jobApplication)
+    public async Task<JobApplication> CreateJobApplication(JobApplicationDTO jobApplication)
     {
-        _dbContext.JobApplications.Add(jobApplication);
+        var application = new JobApplication
+        {
+            Id = Guid.NewGuid().ToString(),
+            Company = jobApplication.Company,
+            Position = jobApplication.Position,
+            Status = jobApplication.Status,
+            DateApplied = DateTime.UtcNow
+        };
+        _dbContext.JobApplications.Add(application);
         await _dbContext.SaveChangesAsync();
-        return jobApplication;
+        return application;
     }
 
     public async Task<JobApplication> UpdateJobApplication(JobApplication jobApplication)
@@ -47,21 +56,22 @@ public class JobApplicationRepository : IJobApplicationRepository
         {
             return null;
         }
+
         existingJobApplication.Company = jobApplication.Company;
         existingJobApplication.Position = jobApplication.Position;
         existingJobApplication.Status = jobApplication.Status;
-        _dbContext.JobApplications.Update(jobApplication);
         await _dbContext.SaveChangesAsync();
         return jobApplication;
     }
 
-    public async Task<bool> DeleteJobApplication(int id)
+    public async Task<bool> DeleteJobApplication(string id)
     {
         var existingJobApplication = await _dbContext.JobApplications.FindAsync(id);
         if (existingJobApplication == null)
         {
             return false;
         }
+
         _dbContext.JobApplications.Remove(new JobApplication { Id = id });
         await _dbContext.SaveChangesAsync();
         return true;

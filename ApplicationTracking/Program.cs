@@ -1,3 +1,7 @@
+using ApplicationTracking.Repositories;
+using ApplicationTracking.Repositories.Interface;
+using ApplicationTracking.Services;
+using ApplicationTracking.Services.Interface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +22,8 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IJobApplicationService, JobApplicationService>();
+builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseInMemoryDatabase("JobApplicationsDB"));
 var app = builder.Build();
