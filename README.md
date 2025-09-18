@@ -23,11 +23,12 @@ This is the backend API for the Job Application Tracker application.
 
 ```bash
 git clone <backend-repo-url>
-cd backend
-
+```
 2. **Install dependencies(if needed)**
+```bash
 dotnet restore
-
-3. **Run the API**
+```
+3. **Run the API Server**
+```bash
 dotnet run
 ```
